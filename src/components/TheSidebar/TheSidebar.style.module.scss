@@ -1,0 +1,40 @@
+.sidebar {
+   &__header {
+      padding: 8px 8px 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--color-gray);
+      border-bottom: var(--border);
+   }
+   &__text {
+      display: flex;
+      flex-direction: column;
+   }
+   &__label {
+      font-size: var(--font-s-small);
+   }
+   &__icon {
+      fill: var(--color-light);
+   }
+}
+
+.nav {
+   &__list {
+   }
+   &__item {
+      &_active {
+         background-color: var(--color-gray);
+      }
+   }
+   &__link {
+      height: 32px;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      column-gap: 14px;
+   }
+   &__icon {
+      fill: var(--color-light);
+   }
+}

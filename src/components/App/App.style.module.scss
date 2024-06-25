@@ -1,0 +1,12 @@
+.app {
+   height: 100%;
+   display: grid;
+   grid-template-columns: 234px 1fr;
+   grid-template-rows: auto 1fr;
+   &__header {
+      grid-column: span 2;
+   }
+   &__aside {
+      border-right: var(--border);
+   }
+}
