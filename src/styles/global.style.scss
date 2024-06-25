@@ -1,0 +1,11 @@
+@import './normalize.style.scss';
+@import './variables.style.scss';
+
+body {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 400;
+   font-size: var(--font-s-normal);
+   line-height: var(--line-h-default);
+   color: var(--color-light);
+   background: var(--color-light-dark);
+}
