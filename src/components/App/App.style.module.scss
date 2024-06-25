@@ -10,3 +10,9 @@
       border-right: var(--border);
    }
 }
+
+.main {
+   &__nav {
+      border-bottom: var(--border);
+   }
+}
