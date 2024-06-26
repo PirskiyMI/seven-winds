@@ -2,22 +2,22 @@ import ArrowIcon from 'src/assets/icons/arrow.svg';
 import NavIcon from 'src/assets/icons/nav-item.svg';
 
 import { navData } from './TheSidebar.mock';
-import styles from './TheSidebar.style.module.scss';
+import style from './TheSidebar.style.module.scss';
 
 export function TheSidebar() {
    const nav = (
-      <nav className={`${styles.sidebar__nav} ${styles.nav}`}>
-         <ul className={styles.nav__list}>
+      <nav className={`${style.sidebar__nav} ${style.nav}`}>
+         <ul className={style.nav__list}>
             {navData.map(({ id, path, title }) => {
                const classNames =
                   title === 'СМР'
-                     ? `${styles.nav__item} ${styles.nav__item_active}`
-                     : styles.nav__item;
+                     ? `${style.nav__item} ${style.nav__item_active}`
+                     : style.nav__item;
 
                return (
                   <li key={id} className={classNames}>
-                     <a href={path} className={styles.nav__link}>
-                        <NavIcon className={styles.nav__icon} />
+                     <a href={path} className={style.nav__link}>
+                        <NavIcon className={style.nav__icon} />
                         <span>{title}</span>
                      </a>
                   </li>
@@ -28,17 +28,17 @@ export function TheSidebar() {
    );
 
    return (
-      <aside className={styles.sidebar}>
-         <div className={styles.sidebar__header}>
-            <div className={styles.sidebar__text}>
+      <aside className={style.sidebar}>
+         <div className={style.sidebar__header}>
+            <div className={style.sidebar__text}>
                <span>Название проекта</span>
-               <span className={styles.sidebar__label}>Аббревиатура</span>
+               <span className={style.sidebar__label}>Аббревиатура</span>
             </div>
-            <button className={styles.sidebar__button}>
-               <ArrowIcon className={styles.sidebar__icon} />
+            <button className={style.sidebar__button}>
+               <ArrowIcon className={style.sidebar__icon} />
             </button>
          </div>
-         <div className={styles.sidebar__main}>{nav}</div>
+         <div className={style.sidebar__main}>{nav}</div>
       </aside>
    );
 }

@@ -1,19 +1,19 @@
-import styles from './TheHeader.style.module.scss';
+import style from './TheHeader.style.module.scss';
 
 import MenuIcon from 'src/assets/icons/menu.svg';
 import FallbackIcon from 'src/assets/icons/fallback.svg';
 
 export function TheHeader() {
    const navMenu = (
-      <nav className={`${styles.header__nav} ${styles.nav}`}>
-         <ul className={styles.nav__list}>
-            <li className={`${styles.nav__item} ${styles.nav__item_active}`}>
-               <a href="#" className={styles.nav__link}>
+      <nav className={`${style.header__nav} ${style.nav}`}>
+         <ul className={style.nav__list}>
+            <li className={`${style.nav__item} ${style.nav__item_active}`}>
+               <a href="#" className={style.nav__link}>
                   Просмотр
                </a>
             </li>
-            <li className={styles.nav__item}>
-               <a href="#" className={styles.nav__link}>
+            <li className={style.nav__item}>
+               <a href="#" className={style.nav__link}>
                   Управление
                </a>
             </li>
@@ -22,13 +22,13 @@ export function TheHeader() {
    );
 
    return (
-      <header className={styles.header}>
-         <div className={styles.header__buttons}>
-            <button className={styles.header__button}>
-               <MenuIcon className={styles.header__icon} />
+      <header className={style.header}>
+         <div className={style.header__buttons}>
+            <button className={style.header__button}>
+               <MenuIcon className={style.header__icon} />
             </button>
-            <button className={styles.header__button}>
-               <FallbackIcon className={styles.header__icon} />
+            <button className={style.header__button}>
+               <FallbackIcon className={style.header__icon} />
             </button>
          </div>
          {navMenu}

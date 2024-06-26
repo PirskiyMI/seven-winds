@@ -1,10 +1,10 @@
-import styles from './Navigation.style.module.scss';
+import style from './Navigation.style.module.scss';
 
 export function Navigation() {
    return (
-      <div className={styles.navigation}>
-         <ul className={styles.navigation__list}>
-            <li className={styles.navigation__item}>Строительно-монтажные работы</li>
+      <div className={style.navigation}>
+         <ul className={style.navigation__list}>
+            <li className={style.navigation__item}>Строительно-монтажные работы</li>
          </ul>
       </div>
    );
