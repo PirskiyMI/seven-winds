@@ -3,7 +3,7 @@ export interface TableRowProps {
    level: number;
    element: Row;
    deleteRow: () => void;
-   createRow?: (newRow: Row, temporaryId: number) => void;
+   createRow: (newRow: Row, temporaryId: number) => void;
 }
 
 export interface Row {

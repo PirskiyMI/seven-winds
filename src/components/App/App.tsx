@@ -14,7 +14,7 @@ export function App() {
          <aside className={style.app__aside}>
             <TheSidebar />
          </aside>
-         <main className={`${style.app__main} ${style.main}`}>
+         <main className={style.main}>
             <div className={style.main__nav}>
                <Navigation />
             </div>

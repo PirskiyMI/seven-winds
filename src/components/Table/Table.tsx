@@ -26,12 +26,7 @@ export function Table() {
       setRowList((prev) => [...prev.filter((row) => row.id !== id)]);
    };
    const createRow = (newRow: Row, id: number) => {
-      setRowList((prev) => [
-         ...prev.map((row) => {
-            if (row.id !== id) return row;
-            return newRow;
-         }),
-      ]);
+      setRowList((prev) => [...prev.map((row) => (row.id !== id ? row : newRow))]);
    };
 
    return (

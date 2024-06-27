@@ -1,7 +1,5 @@
 .navigation {
-   &__list {
-      display: flex;
-   }
+   display: flex;
    &__item {
       padding: 15px 15px;
       border-right: var(--border);

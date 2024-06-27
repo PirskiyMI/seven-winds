@@ -26,10 +26,6 @@
 
 .nav {
    color: var(--color-gray);
-   &__list {
-      display: flex;
-      column-gap: 28px;
-   }
    &__item {
       position: relative;
       &_active {
@@ -45,5 +41,9 @@
             background-color: var(--color-light);
          }
       }
+   }
+   &__list {
+      display: flex;
+      column-gap: 28px;
    }
 }

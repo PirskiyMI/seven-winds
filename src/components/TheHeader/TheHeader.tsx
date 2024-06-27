@@ -5,7 +5,7 @@ import FallbackIcon from 'src/assets/icons/fallback.svg';
 
 export function TheHeader() {
    const navMenu = (
-      <nav className={`${style.header__nav} ${style.nav}`}>
+      <nav className={style.nav}>
          <ul className={style.nav__list}>
             <li className={`${style.nav__item} ${style.nav__item_active}`}>
                <a href="#" className={style.nav__link}>

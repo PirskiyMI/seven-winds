@@ -6,8 +6,8 @@ import style from './TheSidebar.style.module.scss';
 
 export function TheSidebar() {
    const nav = (
-      <nav className={`${style.sidebar__nav} ${style.nav}`}>
-         <ul className={style.nav__list}>
+      <nav>
+         <ul>
             {NAV_LIST.map(({ id, path, title }) => {
                const classNames =
                   title === 'СМР'
@@ -28,7 +28,7 @@ export function TheSidebar() {
    );
 
    return (
-      <div className={style.sidebar}>
+      <div>
          <div className={style.sidebar__header}>
             <div className={style.sidebar__text}>
                <span>Название проекта</span>
