@@ -12,6 +12,8 @@
    }
    &__ceil {
       padding: 12px;
+      color: var(--color-gray);
+      line-height: var(--line-h-large);
       border-bottom: var(--border);
       &_small {
          min-width: 100px;

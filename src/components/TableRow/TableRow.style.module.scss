@@ -2,6 +2,7 @@
    cursor: pointer;
    &__ceil {
       padding: 12px;
+      line-height: var(--line-h-large);
       border-bottom: var(--border);
       &_small {
          min-width: 100px;
