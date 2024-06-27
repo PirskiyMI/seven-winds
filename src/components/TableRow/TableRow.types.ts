@@ -1,3 +1,11 @@
+export interface TableRowProps {
+   parentId: number | null;
+   level: number;
+   element: Row;
+   deleteRow: () => void;
+   createRow?: (newRow: Row, temporaryId: number) => void;
+}
+
 export interface Row {
    child: Row[];
    id: number;

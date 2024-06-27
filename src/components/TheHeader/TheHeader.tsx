@@ -22,7 +22,7 @@ export function TheHeader() {
    );
 
    return (
-      <header className={style.header}>
+      <div className={style.header}>
          <div className={style.header__buttons}>
             <button className={style.header__button}>
                <MenuIcon className={style.header__icon} />
@@ -32,6 +32,6 @@ export function TheHeader() {
             </button>
          </div>
          {navMenu}
-      </header>
+      </div>
    );
 }

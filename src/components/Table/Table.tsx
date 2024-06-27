@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { Row } from 'src/types/row';
-import { fetchDeleteRow, fetchRowList } from 'src/api';
+import { TableRow, Row, fetchDeleteRow } from 'src/components/TableRow';
+import { NEW_ROW } from 'src/constants/newRow';
 
 import style from './Table.style.module.scss';
-import { TableRow } from './TableRow';
+import { fetchRowList } from './Table.service';
 
 export function Table() {
    const [rowList, setRowList] = useState<Row[]>([]);
@@ -25,23 +25,7 @@ export function Table() {
       setRowList((prev) => [
          ...prev.map((row) => {
             if (row.id !== id) return row;
-            const newRow: Row = {
-               id: 1,
-               child: [],
-               equipmentCosts: 0,
-               estimatedProfit: 0,
-               machineOperatorSalary: 0,
-               mainCosts: 0,
-               materials: 0,
-               mimExploitation: 0,
-               overheads: 0,
-               rowName: '',
-               salary: 0,
-               supportCosts: 0,
-               total: 0,
-            };
-
-            row.child.push(newRow);
+            row.child.push(NEW_ROW);
             return row;
          }),
       ]);
@@ -51,7 +35,7 @@ export function Table() {
       <>
          {rowList && (
             <table className={style.table}>
-               <thead className={style.table__header}>
+               <thead>
                   <tr>
                      <td className={`${style.table__ceil} ${style.table__ceil_small}`}>Уровень</td>
                      <td className={`${style.table__ceil} ${style.table__ceil_large}`}>

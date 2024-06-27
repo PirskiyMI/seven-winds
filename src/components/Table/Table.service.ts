@@ -1,7 +1,7 @@
-import { Row } from 'src/types/row';
 import { BASE_URL, E_ID } from 'src/constants/apiConstants';
+import { Row } from 'src/components/TableRow';
 
-export const fetchRowList = async (): Promise<Row[]> => {
+export async function fetchRowList(): Promise<Row[]> {
    try {
       const res = await fetch(`${BASE_URL}/v1/outlay-rows/entity/${E_ID}/row/list`, {
          method: 'GET',
@@ -10,4 +10,4 @@ export const fetchRowList = async (): Promise<Row[]> => {
    } catch (error) {
       throw error;
    }
-};
+}

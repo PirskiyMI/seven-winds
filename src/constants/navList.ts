@@ -1,4 +1,4 @@
-export const navData = [
+export const NAV_LIST = [
    {
       id: 1,
       title: 'По проекту',

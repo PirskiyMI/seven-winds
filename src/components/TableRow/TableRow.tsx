@@ -1,21 +1,13 @@
-import { ChangeEvent, ClassAttributes, Fragment, KeyboardEvent, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import FileIcon from 'src/assets/icons/file.svg';
 import TrashIcon from 'src/assets/icons/trash.svg';
-import { fetchChangeRow, fetchCreateRow, fetchDeleteRow } from 'src/api';
 import { MyField } from 'src/components/controllers/MyField';
 import { NEW_ROW } from 'src/constants/newRow';
-import { Row } from 'src/types/row';
 
-import style from './Table.style.module.scss';
-
-interface TableRowProps {
-   parentId: number | null;
-   level: number;
-   element: Row;
-   deleteRow: () => void;
-   createRow?: (newRow: Row, rowId: number) => void;
-}
+import style from './TableRow.style.module.scss';
+import { TableRowProps, Row } from './TableRow.types';
+import { fetchChangeRow, fetchCreateRow, fetchDeleteRow } from './TableRow.service';
 
 export function TableRow({ parentId, level, element, createRow, deleteRow }: TableRowProps) {
    const paddingLeft = level * 20;
@@ -27,15 +19,9 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
    const closeEditor = async (e: KeyboardEvent<HTMLTableRowElement>) => {
       if (e.key === 'Enter') {
          if (row.id !== 1) {
-            const { child, id } = row;
-            await fetchChangeRow(row.id, row);
+            await fetchChangeRow(row);
          } else {
-            const { child, id } = row;
-            const newRow = {
-               parentId,
-               ...row,
-            };
-            const { current } = await fetchCreateRow(newRow);
+            const { current } = await fetchCreateRow(row, parentId);
 
             if (createRow) createRow({ ...current, child: [] }, row.id);
          }
@@ -50,80 +36,73 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
    const addRow = () => {
       setRow((prev) => ({ ...prev, child: [...prev.child, NEW_ROW] }));
    };
-   const createChild = (newRow: Row, rowId: number) => {
+   const createChild = (newRow: Row, temporaryId: number) => {
       setRow((prev) => ({
          ...prev,
-         child: [
-            ...prev.child.map((row) => {
-               if (row.id !== rowId) return row;
-
-               return newRow;
-            }),
-         ],
+         child: [...prev.child.map((row) => (row.id !== temporaryId ? row : newRow))],
       }));
    };
    const deleteChild = (id: number) => async () => {
       await fetchDeleteRow(id);
-      setRow((prev) => ({ ...prev, child: [...prev.child.filter((subRow) => subRow.id !== id)] }));
+      setRow((prev) => ({ ...prev, child: [...prev.child.filter((child) => child.id !== id)] }));
    };
 
    const { rowName, salary, equipmentCosts, overheads, estimatedProfit } = row;
 
    const childRows = (
       <>
-         {row.child.length
-            ? row.child.map((child) => (
-                 <TableRow
-                    key={child.id}
-                    parentId={row.id}
-                    level={level + 1}
-                    element={child}
-                    createRow={createChild}
-                    deleteRow={deleteChild(child.id)}
-                 />
-              ))
-            : null}
+         {!!row.child.length &&
+            row.child.map((child) => (
+               <TableRow
+                  key={child.id}
+                  parentId={row.id}
+                  level={level + 1}
+                  element={child}
+                  createRow={createChild}
+                  deleteRow={deleteChild(child.id)}
+               />
+            ))}
       </>
    );
 
    return (
       <>
-         <tr onDoubleClick={openEditor} onKeyDown={closeEditor} className={style.table__row}>
+         <tr onDoubleClick={openEditor} onKeyDown={closeEditor} className={style.row}>
             <td
                style={
                   paddingLeft ? { paddingLeft: 12 + paddingLeft + 'px' } : { paddingLeft: '12px' }
                }
-               className={`${style.table__ceil} ${style.table__ceil_small}`}>
-               <div className={style.table__actions}>
+               className={`${style.row__ceil} ${style.row__ceil_small}`}>
+               <div className={style.row__actions}>
                   <button
                      onClick={addRow}
                      disabled={isEdited}
-                     className={`${style.table__action} ${style.table__action_file}`}>
-                     <FileIcon className={style.table__icon} />
+                     className={`${style.row__action} ${style.row__action_file}`}>
+                     <FileIcon className={style.row__icon} />
                   </button>
                   <button
                      onClick={deleteRow}
                      disabled={isEdited}
-                     className={`${style.table__action} ${style.table__action_trash}`}>
-                     <TrashIcon className={style.table__icon} />
+                     className={`${style.row__action} ${style.row__action_trash}`}>
+                     <TrashIcon className={style.row__icon} />
                   </button>
                </div>
             </td>
-            <td className={`${style.table__ceil} ${style.table__ceil_large}`}>
+            <td className={`${style.row__ceil} ${style.row__ceil_large}`}>
                {isEdited ? (
                   <MyField autoFocus value={rowName} onChange={changeRow('rowName')} />
                ) : (
                   rowName
                )}
             </td>
-            <td className={`${style.table__ceil} ${style.table__ceil_normal}`}>
+            <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
                {isEdited ? (
                   <MyField type="number" value={salary} onChange={changeRow('salary')} />
                ) : (
                   salary
                )}
             </td>
-            <td className={`${style.table__ceil} ${style.table__ceil_normal}`}>
+            <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
                {isEdited ? (
                   <MyField
                      type="number"
@@ -134,14 +113,14 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
                   equipmentCosts
                )}
             </td>
-            <td className={`${style.table__ceil} ${style.table__ceil_normal}`}>
+            <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
                {isEdited ? (
                   <MyField type="number" value={overheads} onChange={changeRow('overheads')} />
                ) : (
                   overheads
                )}
             </td>
-            <td className={`${style.table__ceil} ${style.table__ceil_normal}`}>
+            <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
                {isEdited ? (
                   <MyField
                      type="number"

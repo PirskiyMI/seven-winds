@@ -1,4 +1,4 @@
-import { Row } from 'src/types/row';
+import { Row } from 'src/components/Table/row';
 
 export const NEW_ROW: Row = {
    id: 1,

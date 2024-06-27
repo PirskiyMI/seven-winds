@@ -8,13 +8,13 @@ import style from './App.style.module.scss';
 export function App() {
    return (
       <div className={style.app}>
-         <div className={style.app__header}>
+         <header className={style.app__header}>
             <TheHeader />
-         </div>
-         <div className={style.app__aside}>
+         </header>
+         <aside className={style.app__aside}>
             <TheSidebar />
-         </div>
-         <main className={style.app__main}>
+         </aside>
+         <main className={`${style.app__main} ${style.main}`}>
             <div className={style.main__nav}>
                <Navigation />
             </div>
