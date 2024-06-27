@@ -10,9 +10,13 @@ export function Table() {
    const [rowList, setRowList] = useState<Row[]>([]);
 
    useEffect(() => {
+      if (!rowList.length) setRowList([NEW_ROW]);
+   }, [rowList]);
+
+   useEffect(() => {
       const fetchData = async () => {
          const res = await fetchRowList();
-         setRowList(res);
+         if (res.length > 0) setRowList(res);
       };
       fetchData();
    }, []);
@@ -21,12 +25,11 @@ export function Table() {
       await fetchDeleteRow(id);
       setRowList((prev) => [...prev.filter((row) => row.id !== id)]);
    };
-   const createRow = (id: number) => () => {
+   const createRow = (newRow: Row, id: number) => {
       setRowList((prev) => [
          ...prev.map((row) => {
             if (row.id !== id) return row;
-            row.child.push(NEW_ROW);
-            return row;
+            return newRow;
          }),
       ]);
    };
@@ -62,7 +65,7 @@ export function Table() {
                         parentId={null}
                         level={0}
                         element={row}
-                        createRow={createRow(row.id)}
+                        createRow={createRow}
                         deleteRow={deleteRow(row.id)}
                      />
                   ))}

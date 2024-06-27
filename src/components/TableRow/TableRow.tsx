@@ -99,7 +99,7 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
                {isEdited ? (
                   <MyField type="number" value={salary} onChange={changeRow('salary')} />
                ) : (
-                  salary
+                  new Intl.NumberFormat('ru-RU').format(salary)
                )}
             </td>
             <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
@@ -110,14 +110,14 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
                      onChange={changeRow('equipmentCosts')}
                   />
                ) : (
-                  equipmentCosts
+                  new Intl.NumberFormat('ru-RU').format(equipmentCosts)
                )}
             </td>
             <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
                {isEdited ? (
                   <MyField type="number" value={overheads} onChange={changeRow('overheads')} />
                ) : (
-                  overheads
+                  new Intl.NumberFormat('ru-RU').format(overheads)
                )}
             </td>
             <td className={`${style.row__ceil} ${style.row__ceil_normal}`}>
@@ -128,7 +128,7 @@ export function TableRow({ parentId, level, element, createRow, deleteRow }: Tab
                      onChange={changeRow('estimatedProfit')}
                   />
                ) : (
-                  estimatedProfit
+                  new Intl.NumberFormat('ru-RU').format(estimatedProfit)
                )}
             </td>
          </tr>

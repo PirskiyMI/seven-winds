@@ -24,7 +24,7 @@
       @media (any-hover: hover) {
          &:hover {
             background-color: var(--color-border);
-            .table__action_trash {
+            .row__action_trash {
                opacity: 1;
                visibility: visible;
             }
@@ -34,19 +34,19 @@
    &__action {
       display: flex;
       align-items: center;
-      .table__icon {
+      .row__icon {
          width: 16px;
          height: 16px;
       }
       &_file {
-         .table__icon {
+         .row__icon {
             fill: var(--color-action);
          }
       }
       &_trash {
          opacity: 0;
          visibility: hidden;
-         .table__icon {
+         .row__icon {
             fill: var(--color-danger);
          }
       }
