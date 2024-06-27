@@ -12,10 +12,14 @@
 }
 
 .main {
+   display: flex;
+   flex-direction: column;
    &__nav {
       border-bottom: var(--border);
    }
    &__content {
+      flex: 1 1 auto;
       padding: 0 10px;
+      background-color: var(--color-dark);
    }
 }
